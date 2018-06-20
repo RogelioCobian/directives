@@ -8,9 +8,9 @@
       <ul class="list-group">
         <div *ngIf="onlyOdd">
           <li class="list-group-item"
-          *ngFor="let odd of oddNumbers"
-          [ngClass]="{'odd': odd % 2 !== 0}"
-          [ngStyle]="{'background-color': (odd % 2 !== 0) ?  'yellow' : 'transparent'}">
+              *ngFor="let odd of oddNumbers"
+              [ngClass]="{'odd': odd % 2 !== 0}"
+              [ngStyle]="{'background-color': (odd % 2 !== 0) ?  'yellow' : 'transparent'}">
             {{odd}}
           </li>
         </div>
@@ -21,8 +21,10 @@
               {{even}}
             </li>
           </div> -->
+
           <!-- Another way of doing what we are doing above. This time with *ngIf -->
-          <ng-template [ngIf]="!onlyOdd">
+
+          <!-- <ng-template [ngIf]="!onlyOdd">
             <div>
               <li class="list-group-item"
                   *ngFor="let even of evenNumbers"
@@ -31,7 +33,17 @@
               {{even}}
               </li>
             </div>
-          </ng-template>
+          </ng-template> -->
+
+          <!-- Using custom structural directive to do what we did above  -->
+          <div *unless= "onlyOdd">
+            <li class="list-group-item"
+                *ngFor="let even of evenNumbers"
+                [ngClass]= "{'odd': even % 2 !== 0}"
+                [ngStyle]="{backgroundColor: (even % 2 !== 0) ?  'yellow' : 'transparent'}">
+            {{even}}
+            </li>
+          </div>
         </ul>
 
       <p basicHighlight>Style me with basic highlight directive</p>
